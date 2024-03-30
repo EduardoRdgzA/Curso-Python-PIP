@@ -182,6 +182,9 @@ venv.bak/
 # Entorno virtual para ejecutar matplotlib
 venv_plot/
 
+# Images
+.png 
+
 # Spyder project settings
 .spyderproject
 .spyproject
