@@ -63,7 +63,7 @@ def population(data_country): # diccionario del país.
       }
   return a
 
-
+###########################  GRÁFICAS ###########################
 
 #Gráfica de barras de la población
 def chart(data_population,country):
@@ -80,8 +80,10 @@ def chart(data_population,country):
   ax.set_ylabel('Población [1e8 = 100 000 000]')
   ax.grid()
   #ax.set_yscale('log')
-  plt.show()
+  plt.savefig(f'~/Documents/py-project/app/images/{country}.png')
+  plt.close
 
+'''
 #Gráfica de pastel 
 def chart_pie_1(data_wp_percent_2):
   #initialize: import matplotlib.pyplot as plt
@@ -133,11 +135,12 @@ def chart_pie_continent(path):
   ax.pie(X,labels = labels)
   plt.show()
   
+'''  
 
-
+#Está función solicita el país cuya gráfica se obtendrá. 
 def country_plot(path):
   data = data_dict(path)
-  pais = input('Escribe el Paìs:')
+  pais = input('Escribe el País:')
   data_country = country(pais,data)
   data_population = population(data_country)
   chart(data_population,pais)
@@ -146,7 +149,7 @@ def country_plot(path):
 
 if __name__ == '__main__':
   
-  data = data_dict('./project/data.csv') # Lista de diccionarios.
+  data = data_dict('~/Documents/py-project/app/data.csv') # Lista de diccionarios.
   # data_country = country('Mexico',data) # Lista del diccionario.
   # data_population = population(data_country) # Diccionario
   # data_wp_percent_2 = world_population_percent_2(data)

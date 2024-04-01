@@ -1,3 +1,3 @@
 import utils
 
-utils.country_plot('./project/data.csv')
+utils.country_plot('~/Documents/py-project/app/data.csv')
