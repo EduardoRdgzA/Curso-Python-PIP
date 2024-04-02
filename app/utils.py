@@ -19,7 +19,7 @@ def data_lector(ruta):
       data.append(l1_diccionario) # Se añade cada diccionario a la lista. 
   return data
 
-
+###########################  FILTRADO  ###########################
 # La siguinete función tiene como objetivo selecionar solo un país con "todos" sus datos.
 # Estructura: [{ : , : , ...}], lista de un solo diccionario.
 # Filtro por país de la data.
@@ -43,7 +43,8 @@ def population(data_country): # diccionario del país.
       }
   return a
 
-###########################  GRÁFICAS ###########################
+
+###########################  GRÁFICA ###########################
 
 #Gráfica de barras de la población
 def chart(data_population,country):
@@ -63,18 +64,18 @@ def chart(data_population,country):
   plt.savefig(f'./images/{country}.png')
   plt.close()
 
-###########################  EJECUCION ###########################
+###########################  EJECUCION  ###########################
 #Está función solicita el país cuya gráfica se obtendrá. 
 def country_plot(path):
-  data = data_lector(path)
-  pais = input('Escribe el País:')
-  data_country = country(pais,data)
-  data_population = population(data_country)
+  data = data_lector(path) #Lectura del CSV
+  pais = input('Escribe el País:') # Input de del país
+  data_country = country(pais,data) # Filtrado de la data para el país
+  data_population = population(data_country) #Filtrado de los datos a gráficas
   chart(data_population,pais)
   
 
 
 if __name__ == '__main__':
-  country() 
+  country_plot('data.csv') 
 
 
