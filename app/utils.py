@@ -10,7 +10,7 @@ def data_dict(ruta):
     for fila in objeto_lector: # Para cada fila en el objeto lector(ITERADOR). 
       l1_zip = zip(l1_encabezado,fila) #Devuelve una lista de tuplas. [(enabezado,fila),(),...].
       l1_diccionario = {clave:valor for clave,valor in l1_zip} # Convierte la lista de tuplas a un diccionario.
-      datos.append(l1_diccionario) # Se añade cada diccionario a la lista. 
+      data.append(l1_diccionario) # Se añade cada diccionario a la lista. 
   return data
 # NOTA: 
 # Los iteradores están diseñados para ser recorridos secuencialmente, elemento por elemento, y una vez que un elemento ha sido consumido (leído), no puede ser accedido nuevamente sin reiniciar el iterador desde el principio
@@ -27,8 +27,7 @@ def world_population_percent_1(data):
     a = linea['World Population Percentage']
     data_population.append(float(a))
   return data_population
-'''
-  
+
 # Lista de diccionarios con la estructura: [{'Country/Territory','World Population Percentage' }, ]
 # [{Argentina,.57}, {Mexico,1.6},...{Todos los países}] 
 def world_population_percent_2(data):
@@ -38,7 +37,7 @@ def world_population_percent_2(data):
     y = diccionario['World Population Percentage']
     data_population.append({x:y})
   return data_population
-
+'''
 
 # La siguinete función tiene como objetivo selecionar solo un país con "todos" sus datos.
 # Estructura: [{ : , : , ...}], lista de un solo diccionario.
@@ -80,8 +79,8 @@ def chart(data_population,country):
   ax.set_ylabel('Población [1e8 = 100 000 000]')
   ax.grid()
   #ax.set_yscale('log')
-  plt.savefig(f'~/Documents/py-project/app/images/{country}.png')
-  plt.close
+  plt.savefig(f'./images/{country}.png')
+  plt.close()
 
 '''
 #Gráfica de pastel 
@@ -148,14 +147,6 @@ def country_plot(path):
 
 
 if __name__ == '__main__':
-  
-  data = data_dict('~/Documents/py-project/app/data.csv') # Lista de diccionarios.
-  # data_country = country('Mexico',data) # Lista del diccionario.
-  # data_population = population(data_country) # Diccionario
-  # data_wp_percent_2 = world_population_percent_2(data)
-  # print(data_wp_percent_2)
-  # chart_pie_2(data_wp_percent_2)
-  chart_pie_continent(data)
-
+  country() 
 
 
