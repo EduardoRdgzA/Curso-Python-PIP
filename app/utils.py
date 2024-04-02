@@ -19,16 +19,61 @@ def data_dict(ruta):
 #{'Rank': '10', 'CCA3': 'MEX', 'Country/Territory': 'Mexico', 'Capital': 'Mexico City', 'Continent': 'North America', '2022 Population': '127504125', '2020 Population': '125998302', '2015 Population': '120149897', '2010 Population': '112532401', '2000 Population': '97873442', '1990 Population': '81720428', '1980 Population': '67705186', '1970 Population': '50289306', 'Area (km²)': '1964375', 'Density (per km²)': '64.9082', 'Growth Rate': '1.0063', 'World Population Percentage': '1.6'}
 
 
+# La siguinete función tiene como objetivo selecionar solo un país con "todos" sus datos.
+# Estructura: [{ : , : , ...}], lista de un solo diccionario.
+# Filtro por país de la data.
+def country(country,data):
+  a = filter(lambda x: x['Country/Territory'] == country, data) # Filtro para seleccionar la 'country'
+  return list(a) 
+
+
+#Crea un diccionario con los "datos de la población" del pais seleccionado.
+def population(data_country): # diccionario del país.
+  country= data_country[0]
+  a = {
+    int('2022') : int(country['2022 Population']),
+    int('2020') : int(country['2020 Population']),
+    int('2015') : int(country['2015 Population']),
+    int('2010') : int(country['2010 Population']),
+    int('2000') : int(country['2000 Population']),
+    int('1990') : int(country['1990 Population']),
+    int('1980') : int(country['1980 Population']),
+    int('1970') : int(country['1970 Population'])
+      }
+  return a
+
+###########################  GRÁFICAS ###########################
+
+#Gráfica de barras de la población
+def chart(data_population,country):
+  #initialize: import matplotlib.pyplot as plt
+  #preparate:
+  
+  X =data_population.keys()
+  Y = data_population.values()
+  #Render:
+  fig, ax = plt.subplots()
+  ax.bar(X,Y)
+  ax.set_title(f'{country}')
+  ax.set_xlabel('Año')
+  ax.set_ylabel('Población [1e8 = 100 000 000]')
+  ax.grid()
+  #ax.set_yscale('log')
+  plt.savefig(f'./images/{country}.png')
+  plt.close()
+
+
+#Está función solicita el país cuya gráfica se obtendrá. 
+def country_plot(path):
+  data = data_dict(path)
+  pais = input('Escribe el País:')
+  data_country = country(pais,data)
+  data_population = population(data_country)
+  chart(data_population,pais)
+  
+
 
 if __name__ == '__main__':
-  
-  data = data_dict('ACTUALIZACION DE UBICACIÓN') # Lista de diccionarios.
-  # data_country = country('Mexico',data) # Lista del diccionario.
-  # data_population = population(data_country) # Diccionario
-  # data_wp_percent_2 = world_population_percent_2(data)
-  # print(data_wp_percent_2)
-  # chart_pie_2(data_wp_percent_2)
-  chart_pie_continent(data)
-
+  country() 
 
 
