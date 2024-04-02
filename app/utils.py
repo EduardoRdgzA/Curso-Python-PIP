@@ -6,12 +6,12 @@ def data_dict(ruta):
   with open(ruta,'r') as datafile:
     objeto_lector = csv.reader(datafile, delimiter = ',') #ITERADOR. Cada línea es devuelta como lista de strings ['','',...]. 
     l1_encabezado = next(objeto_lector) #LISTA. Se devuelve la primera fila. ['Rank','CCA3',...]
-    datos = [] # Lista vacía.  
+    data = [] # Lista vacía.  
     for fila in objeto_lector: # Para cada fila en el objeto lector(ITERADOR). 
       l1_zip = zip(l1_encabezado,fila) #Devuelve una lista de tuplas. [(enabezado,fila),(),...].
       l1_diccionario = {clave:valor for clave,valor in l1_zip} # Convierte la lista de tuplas a un diccionario.
-      datos.append(l1_diccionario) # Se añade cada diccionario a la lista. 
-  return datos
+      data.append(l1_diccionario) # Se añade cada diccionario a la lista. 
+  return data
 # NOTA: 
 # Los iteradores están diseñados para ser recorridos secuencialmente, elemento por elemento, y una vez que un elemento ha sido consumido (leído), no puede ser accedido nuevamente sin reiniciar el iterador desde el principio
 
